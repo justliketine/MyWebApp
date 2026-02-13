@@ -1,0 +1,253 @@
+*{
+box-sizing:border-box;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+body{
+margin:0;
+background:linear-gradient(135deg,#eef2ff,#dbeafe);
+color:#1f2937;
+}
+
+/* APP */
+
+.screen{
+display:none;
+padding:20px;
+padding-bottom:100px;
+}
+
+.screen.active{display:block}
+
+/* DASHBOARD */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.card{
+aspect-ratio:1/1;
+background:rgba(255,255,255,.8);
+backdrop-filter:blur(10px);
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:6px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.icon-box{
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.total-icon{background:#dbeafe;color:#2563eb;}
+.expired-icon{background:#fee2e2;color:#ef4444;}
+.soon-icon{background:#fef3c7;color:#f59e0b;}
+.safe-icon{background:#dcfce7;color:#22c55e;}
+
+.card span{font-size:14px;color:#6b7280;}
+.card b{font-size:24px}
+
+/* INPUTS */
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:16px;
+border:none;
+background:white;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:16px;
+border:none;
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+cursor:pointer;
+}
+
+/* INVENTORY */
+
+.item{
+background:rgba(255,255,255,.8);
+margin-top:12px;
+padding:14px;
+border-radius:18px;
+}
+
+/* STATUS COLORS */
+
+.badge{
+padding:4px 10px;
+border-radius:10px;
+font-size:12px;
+font-weight:600;
+margin-left:8px;
+}
+
+.badge.safe{background:#dcfce7;color:#166534}
+.badge.expiring{background:#fef3c7;color:#92400e}
+.badge.expired{background:#fee2e2;color:#991b1b}
+
+/* NAV */
+
+.nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:rgba(255,255,255,.8);
+display:flex;
+justify-content:space-around;
+padding:14px 0;
+}
+
+.nav button{
+background:none;
+color:#374151;
+}
+
+/* FILTER BUTTONS */
+
+#filters{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+#filters button{
+padding:8px 14px;
+border-radius:12px;
+background:#e5e7eb;
+color:#111;
+}
+
+#filters button.active{
+background:#2563eb;
+color:white;
+}
+
+/* EMPTY STATE */
+
+.empty{
+text-align:center;
+opacity:.6;
+padding:30px;
+}
+
+/* RIPPLE EFFECT */
+
+button{
+position:relative;
+overflow:hidden;
+}
+
+.ripple{
+position:absolute;
+border-radius:50%;
+transform:scale(0);
+animation:ripple-animation 0.6s linear;
+background:rgba(255,255,255,0.6);
+}
+
+@keyframes ripple-animation{
+to{
+transform:scale(4);
+opacity:0;
+}
+}
+
+/* ===== APP LAYOUT ===== */
+
+.app-layout{
+display:flex;
+min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:white;
+padding:20px;
+box-shadow:4px 0 20px rgba(0,0,0,.05);
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.sidebar .logo{
+margin-bottom:20px;
+}
+
+.sidebar button{
+text-align:left;
+background:none;
+color:#374151;
+padding:12px;
+border-radius:12px;
+font-size:15px;
+display:flex;
+gap:10px;
+align-items:center;
+cursor:pointer;
+}
+
+.sidebar button:hover{
+background:#eef2ff;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+flex:1;
+padding:30px;
+background:#f6f8fb;
+}
+
+/* hide old mobile nav */
+.nav{
+display:none;
+}
+
+/* show app always */
+#app{
+display:flex !important;
+}
+
+.screen{
+  display:none;
+  animation: fadeSlide .35s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateX(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+<form id="addForm" class="hidden">

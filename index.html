@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Expiration Tracker</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- APP -->
+<div id="app" class="app-layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+
+<h3 class="logo">Inventory Expiration Tracker</h3>
+
+<button onclick="showScreen('dashboard')">
+<i class="fa-solid fa-chart-line"></i> Dashboard
+</button>
+
+<button onclick="showScreen('inventory')">
+<i class="fa-solid fa-box"></i> Inventory
+</button>
+
+<button onclick="showScreen('inventory');openAddForm()">
+<i class="fa-solid fa-plus"></i> Add Item
+</button>
+
+<button onclick="showScreen('alerts')">
+<i class="fa-solid fa-bell"></i> Alerts
+</button>
+
+<button onclick="showScreen('settings')">
+<i class="fa-solid fa-gear"></i> Settings
+</button>
+
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="screen active">
+<h2>Dashboard</h2>
+
+<div class="cards">
+<div class="card">
+<div class="icon-box total-icon"><i class="fa-solid fa-box"></i></div>
+<span>Total</span>
+<b id="total">0</b>
+</div>
+
+<div class="card">
+<div class="icon-box expired-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+<span>Expired</span>
+<b id="expired">0</b>
+</div>
+
+<div class="card">
+<div class="icon-box soon-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+<span>Expiring Soon</span>
+<b id="soon">0</b>
+</div>
+
+<div class="card">
+<div class="icon-box safe-icon"><i class="fa-solid fa-circle-check"></i></div>
+<span>Safe</span>
+<b id="safe">0</b>
+</div>
+</div>
+</section>
+
+<!-- INVENTORY -->
+<section id="inventory" class="screen">
+<h2>Inventory</h2>
+
+<form id="addForm" class="hidden">
+<input id="name" placeholder="Item name" required>
+<input id="qty" type="number" placeholder="Quantity" required>
+
+<select id="mainCat" onchange="loadSubCategories()" required></select>
+<select id="subCat" required></select>
+
+<input id="date" type="date" required>
+<button>Add Item</button>
+</form>
+
+<input id="search" placeholder="Search items...">
+
+<div id="filters"></div>
+<div id="list"></div>
+</section>
+
+<!-- ALERTS -->
+<section id="alerts" class="screen">
+<h2>Alerts</h2>
+<div id="alertList"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="screen">
+<h2>Settings</h2>
+
+<div class="item">
+<h3>Inventory Category Type</h3>
+
+<select id="categoryType">
+<option value="food">Food / Ingredients</option>
+<option value="medicine">Medicine</option>
+<option value="cosmetics">Cosmetics</option>
+</select>
+
+<button onclick="saveCategoryType()">Save</button>
+</div>
+
+<div class="settings-box">
+
+<h3>Expiry Warning Days</h3>
+<input id="warnDays" type="number" min="1">
+<button onclick="saveWarningDays()">Save Setting</button>
+
+<h3>Data</h3>
+<button onclick="resetData()">Clear Inventory</button>
+<button onclick="exportData()">Export Backup</button>
+
+</div>
+</section>
+
+</main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
